@@ -1,0 +1,36 @@
+{
+  "name": "rag-server",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Visual document RAG server exposed through MCP",
+  "type": "module",
+  "main": "index.js",
+  "bin": {
+    "rag-server": "./cli/rag-server.js"
+  },
+  "scripts": {
+    "core:generate": "app-core --project rag --target . --back",
+    "db:up": "docker compose --env-file .env -f database/compose.yml up -d",
+    "db:down": "docker compose --env-file .env -f database/compose.yml down",
+    "db:update": "node --env-file-if-exists=.env database/updateDb.js",
+    "db:reindex-documents": "node scripts/reindex-documents.js",
+    "db:backfill-document-chunks": "node scripts/backfill-document-chunks.js",
+    "db:regenerate-descriptions": "node scripts/regenerate-descriptions.js",
+    "db:reindex-page-chunks": "node scripts/reindex-page-chunks.js",
+    "db:models": "node --env-file=.env scripts/generate-models.js",
+    "cli": "node cli/rag-server.js",
+    "start": "node server.js",
+    "test": "node --test test/*.test.js"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "app-core": "git+https://github.com/DzzD/appcorejs.git#84bf367fb219a4a2db9c973550d2b80b047e7d5e",
+    "canvas": "^3.2.3",
+    "dotenv": "^17.4.2",
+    "file-type": "^21.0.0",
+    "jszip": "^3.10.1",
+    "pg": "^8.16.3"
+  }
+}

@@ -1,0 +1,10 @@
+.env
+node_modules/
+agent/appcorejs/
+vision-images/
+ocr-diagnostics/
+coverage/
+*.log
+*.tmp
+.DS_Store
+Thumbs.db

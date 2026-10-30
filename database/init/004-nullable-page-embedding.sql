@@ -1,0 +1,1 @@
+-- Superseded by the removal of whole-page embeddings.

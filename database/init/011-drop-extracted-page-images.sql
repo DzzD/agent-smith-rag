@@ -1,0 +1,1 @@
+DROP TABLE IF EXISTS document_page_image;

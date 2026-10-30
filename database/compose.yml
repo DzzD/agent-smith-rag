@@ -1,0 +1,24 @@
+name: rag-server-database
+
+services:
+  postgres:
+    image: pgvector/pgvector:pg16
+    container_name: ${RAG_PG_CONTAINER_NAME:-rag-server-postgres}
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${RAG_PG_DB:-rag_server}
+      POSTGRES_USER: ${RAG_PG_USER:-rag_server}
+      POSTGRES_PASSWORD: ${RAG_PG_PASSWORD:-rag_server}
+    ports:
+      - "${RAG_PG_PORT:-5436}:5432"
+    volumes:
+      - rag-server-postgres-data:/var/lib/postgresql/data
+      - ./init:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${RAG_PG_USER:-rag_server} -d ${RAG_PG_DB:-rag_server}"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+volumes:
+  rag-server-postgres-data:
