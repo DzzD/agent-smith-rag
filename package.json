@@ -26,7 +26,7 @@
     "node": ">=22"
   },
   "dependencies": {
-    "app-core": "git+https://github.com/DzzD/appcorejs.git#84bf367fb219a4a2db9c973550d2b80b047e7d5e",
+    "app-core": "github:DzzD/appcorejs#f2ab5170ae9bc5d2ec0390fe78f06e7ec852b58a",
     "canvas": "^3.2.3",
     "dotenv": "^17.4.2",
     "file-type": "^21.0.0",
